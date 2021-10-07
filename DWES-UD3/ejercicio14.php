@@ -7,6 +7,35 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <?php
+        $meses=[];
+        $meses[]="enero";
+        $meses[]="febrero";
+        $meses[]="marzo";
+        var_dump($meses);
+        echo "<br>";
+        $elementos=count($meses);
+        echo "El array contiene $elementos meses";
+        echo "<br>";
+        
+        $meses[]=7;
+        $meses[]="Abril";
+        $meses[]=true;
+        $meses[5]="Mayo";
+        $meses[]="Junio";
+        $meses[]="Julio";
+        $meses[]="Agosto";
+        $meses[]="Septiembre";
+        $meses[]="Octubre";
+        $meses[]="Noviembre";
+        $meses[]="Diciembre";
+        var_dump($meses);
+        echo "<br>";
+        count($meses);
+
+        unset($meses[3]);
+        var_dump($meses);
+
+    ?>
 </body>
 </html>
