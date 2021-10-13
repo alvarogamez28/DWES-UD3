@@ -22,9 +22,14 @@
         $errorApellido="";
         $errorDireccion="";
         $errorInstituto="";
+        $errorEstudios="";
+        $errorRed="";
+        $errorCheckbox="";
+        $errorDia="";
         
 
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            include "ejercicio17.fun.php";
             $nombre = $_POST["nombre"];
             $apellido = $_POST["apellido"];
             $direccion = $_POST["direccion"];
@@ -34,6 +39,18 @@
             $red = $_POST["red"];
             $checkbox = $_POST["checkbox"];
 
+            if (!isset($_POST["red"])){
+                $errorRed = "Tienes que seleccionar una red";
+            }
+
+            if (!isset($_POST["checkbox"])){
+                $errorCheckbox = "Tienes que activar algun checkbox";
+            }
+
+            if (!isset($_POST["dias"])){
+                $errorDia = "Tienes que seleccionar un día";
+            }
+
             if(!preg_match('/^IES/', $instituto)){
                 $errorInstituto = "El instituto tiene que comenzar por IES";
             }
@@ -41,10 +58,16 @@
                 $errorNombre = "El nombre tiene que estar relleno";
             }
             if (empty($apellido)){
-                $errorApellido = "El nombre tiene que estar relleno";
+                $errorApellido = "El apellido tiene que estar relleno";
             }
             if (empty($direccion)){
-                $errorDireccion = "El nombre tiene que estar relleno";
+                $errorDireccion = "La dirección tiene que estar relleno";
+            }
+            if (empty($instituto)){
+                $errorDireccion = "El instituto tiene que estar relleno";
+            }
+            if (empty($estudios)){
+                $errorEstudios = "Los estudios tiene que estar relleno";
             }
 
 
@@ -52,21 +75,21 @@
     ?>
     <fieldset>
         <legend>Formulario de opciones</legend>
-            <form action="" method="POST">
+            <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="POST">
             <p>
                 <label for="nombre">Nombre</label>
                 <input type="text" name="nombre" value="<?php echo $nombre;?>"/>
-                <span style="color:red"><?php echo $errorNombre;?> *</span>
+                <span style="color:red"><?php echo $errorNombre;?> </span>
             </p>
             <p>
                 <label for="apellido">Apellidos</label>
                 <input type="text" name="apellido" value="<?php echo $apellido;?>"/>
-                <span style="color:red"><?php echo $errorApellido;?> *</span>
+                <span style="color:red"><?php echo $errorApellido;?> </span>
             </p>
             <p>
                 <label for="direccion">Direccion</label>
                 <input type="text" name="direccion" value="<?php echo $direccion;?>"/>
-                <span style="color:red"><?php echo $errorDireccion;?> *</span>
+                <span style="color:red"><?php echo $errorDireccion;?> </span>
             </p>
             <p>
                 <label for="red">Wifi</label>
@@ -75,14 +98,17 @@
                 <input type="radio" name="red" value=""/>
                 <label for="red">Fibra</label>
                 <input type="radio" name="red" value=""/>
+                <span style="color:red"><?php echo $errorRed;?> </span>
             </p>
             <p>
                 <label for="instituto">Instituto</label>
                 <input type="text" name="instituto" value=""/>
+                <span style="color:red"><?php echo $errorInstituto;?> </span>
             </p>
             <p>
                 <label for="estudios">Estudios elegidos</label>
                 <input type="text" name="estudios" value=""/>
+                <span style="color:red"><?php echo $errorEstudios;?> </span>
             </p>
 
             <select name="dias" id="" multiple>
@@ -93,6 +119,7 @@
                 <option value="viernes">Viernes</option>
                 <option value="sabado">Sabado</option>
                 <option value="domingo">Domingo</option>
+                <span style="color:red"><?php echo $errorDia;?> </span>
             </select>
             <p>
                 <label for="historia">Historia</label>
@@ -103,9 +130,15 @@
                 <input type="checkbox" name="checkbox[]" value="lengua"/>
                 <label for="matematicas">Matemáticas</label>
                 <input type="checkbox" name="checkbox[]" value="matematicas"/>
+                <span style="color:red"><?php echo $errorCheckbox;?> </span>
             </p>
 
-            <textarea rows="7" cols="40" placeholder="Inserte el texto"></textarea>
+            <textarea name="texto" placeholder="Inserte el texto" value="<?php
+                $texto = stripslashes($texto);
+                $texto = strip_tags($texto);
+                $texto = htmlspecialchars($texto);
+                ?>">
+            </textarea>
 
 
             <p>
