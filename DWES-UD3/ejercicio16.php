@@ -13,10 +13,7 @@
     }
     echo multiplicacion(3,7);*/
     include "funciones.inc.php";
-    echo multiplicacion(3,7);
-    echo "<br>";
     include_once "funciones2.inc.php";
-    echo multiplicacion(3,7);
     require "funciones2.inc.php";
     echo multiplicacion(3,7);
     ?>
