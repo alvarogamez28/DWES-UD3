@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="01.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form name="register" id="register" action="javascript:iniciar()" method="POST">
+        <label for="name">Nombre</label><br>
+        <input type="text" id="name" name="name" placeholder="Nombre" pattern="[A-Za-z]*">
+        <input type="text" id="lastname" name="lastname" placeholder="Apellidos" pattern="[A-Za-z]*"><br>
+        <label for="username">Nombre de usuario</label><br>
+        <input type="text" id="username" name="username" pattern="[A-Za-z]*"><br>
+        <label for="password">Contraseña</label><br>
+        <input type="password" id="password" name="password" pattern="[A-Za-z0-9!­*$%]*" onchange="checkPassword()"><br>
+        <label for="passwordConfirm">Confirma tu contraseña</label><br>
+        <input type="password" id="passwordConfirm" name="passwordConfirm" pattern="[A-Za-z0-9!­*$%]*" onchange="checkPassword()"><br>
+        <div id="errorPassword"></div>
+        <label>Fecha de nacimiento</label><br>
+        <input type="date" name="date" id="date" onchange="addEdad()">
+          <label>Edad:</label>
+          <input type="number" id="edad" name="edad" disabled><br>
+          <label>Sexo</label><br>
+          <select id="sex" name="sex">
+            <option value="hombre">Hombre</option>
+            <option value="mujer">Mujer</option>
+            <option value="otro">Otro</option>
+          </select><br>
+          <label>Teléfono móvil</label><br>
+          <input type="tel" id="telefono" name="telefono" pattern="[0-9]{9}"><br>
+          <label>Tu dirección de correo electrónico actual</label><br>
+          <input type="email" id="email" name="email"><br><br>
+          <button id="register-ok" type="submit">Registrar</button>
+          <!--<input type="button" onclick="submit()" value="Enviar"/>-->
+      </form>
+</body>
+</html>
